@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+		<style>
+            table,
+            table tr th,
+            table tr td {
+                border: 1px solid #0094ff;
+            }
+        </style>
+<title>表头相同合并练习题</title>
+</head>
+<body onload = "margerTable()">
+	<table style="border: 1px;" id="test1">
+            <thead>
+                <tr>
+                	<th>主食</th>
+                    <th>主食</th>
+                    <th>水果</th>
+                    <th>水果</th>
+                    <th>甜食</th>
+                    <th>甜食</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                	<td>馒头</td>
+                    <td>面条</td>
+                    <td>苹果</td>
+                    <td>葡萄</td>
+                    <td>小面包</td>
+                    <td>饼干</td>
+                </tr>
+                <tr>
+                	<td>大米</td>
+                    <td>水稻</td>
+                    <td>荔枝</td>
+                    <td>龙眼</td>
+                    <td>酥饼</td>
+                    <td>锅巴</td>
+                </tr>
+                <tr>
+                	<td>杂粮</td>
+                    <td>糟糠</td>
+                    <td>香蕉</td>
+                    <td>草莓</td>
+                    <td>瓜子</td>
+                    <td>杏仁</td>
+                </tr>
+            </tbody>
+        </table>
+</body>
+<script type="text/javascript">
+	var margerTable = function(){
+		var tb = document.getElementById("test1");
+		if(!tb || !tb.rows || tb.rows.length <= 0){
+			return;
+		}
+		for(var i = 0; i < tb.rows.length;i++){
+			for(var j = 0; j < tb.rows.item(0).cells.length;j++){
+				if(j < tb.rows.item(0).cells.length-1){
+					if(tb.rows.item(0).cells[j].innerHTML == tb.rows.item(0).cells[j+1].innerHTML){
+						tb.rows[i].removeChild(tb.rows[i].cells[j+1]);
+						tb.rows[i].cells[j].setAttribute("colspan",2);
+					}
+				}
+			}
+		}
+	}
+</script>
+</html>
